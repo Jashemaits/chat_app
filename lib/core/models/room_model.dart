@@ -1,3 +1,4 @@
+import 'package:chat_app/core/models/call_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -11,6 +12,7 @@ class RoomModel with _$RoomModel {
     required String name,
     required List<String> members,
     @TimestampConverter() required DateTime createdAt,
+    CallModel? activeCall,
   }) = _RoomModel;
 
   factory RoomModel.fromJson(Map<String, dynamic> json) =>

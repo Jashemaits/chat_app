@@ -1,4 +1,5 @@
 import 'package:chat_app/auth/application/auth_bloc.dart';
+import 'package:chat_app/call/application/call_bloc.dart';
 import 'package:chat_app/room/application/room_bloc.dart';
 import 'package:chat_app/splash/presentation/splash_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -18,6 +19,9 @@ class AppWidget extends StatelessWidget {
         ),
         BlocProvider<RoomBloc>(
           create: (context) => RoomBloc()..add(const RoomEvent.load()),
+        ),
+        BlocProvider<CallBloc>(
+          create: (context) => CallBloc(),
         ),
       ],
       child: MaterialApp(

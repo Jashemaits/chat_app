@@ -13,6 +13,9 @@ _$RoomModelImpl _$$RoomModelImplFromJson(Map<String, dynamic> json) =>
       members:
           (json['members'] as List<dynamic>).map((e) => e as String).toList(),
       createdAt: const TimestampConverter().fromJson(json['createdAt']),
+      activeCall: json['activeCall'] == null
+          ? null
+          : CallModel.fromJson(json['activeCall'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$RoomModelImplToJson(_$RoomModelImpl instance) =>
@@ -21,4 +24,5 @@ Map<String, dynamic> _$$RoomModelImplToJson(_$RoomModelImpl instance) =>
       'name': instance.name,
       'members': instance.members,
       'createdAt': const TimestampConverter().toJson(instance.createdAt),
+      'activeCall': instance.activeCall,
     };
