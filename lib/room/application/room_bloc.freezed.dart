@@ -20,18 +20,21 @@ mixin _$RoomEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() load,
     required TResult Function(String name) create,
+    required TResult Function(String roomId) joinRoom,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
     TResult? Function(String name)? create,
+    TResult? Function(String roomId)? joinRoom,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
     TResult Function(String name)? create,
+    TResult Function(String roomId)? joinRoom,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +42,21 @@ mixin _$RoomEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(LoadRoomsEvent value) load,
     required TResult Function(CreateRoomEvent value) create,
+    required TResult Function(JoinRoomEvent value) joinRoom,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(LoadRoomsEvent value)? load,
     TResult? Function(CreateRoomEvent value)? create,
+    TResult? Function(JoinRoomEvent value)? joinRoom,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LoadRoomsEvent value)? load,
     TResult Function(CreateRoomEvent value)? create,
+    TResult Function(JoinRoomEvent value)? joinRoom,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -119,6 +125,7 @@ class _$LoadRoomsEventImpl implements LoadRoomsEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() load,
     required TResult Function(String name) create,
+    required TResult Function(String roomId) joinRoom,
   }) {
     return load();
   }
@@ -128,6 +135,7 @@ class _$LoadRoomsEventImpl implements LoadRoomsEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
     TResult? Function(String name)? create,
+    TResult? Function(String roomId)? joinRoom,
   }) {
     return load?.call();
   }
@@ -137,6 +145,7 @@ class _$LoadRoomsEventImpl implements LoadRoomsEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
     TResult Function(String name)? create,
+    TResult Function(String roomId)? joinRoom,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -150,6 +159,7 @@ class _$LoadRoomsEventImpl implements LoadRoomsEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(LoadRoomsEvent value) load,
     required TResult Function(CreateRoomEvent value) create,
+    required TResult Function(JoinRoomEvent value) joinRoom,
   }) {
     return load(this);
   }
@@ -159,6 +169,7 @@ class _$LoadRoomsEventImpl implements LoadRoomsEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(LoadRoomsEvent value)? load,
     TResult? Function(CreateRoomEvent value)? create,
+    TResult? Function(JoinRoomEvent value)? joinRoom,
   }) {
     return load?.call(this);
   }
@@ -168,6 +179,7 @@ class _$LoadRoomsEventImpl implements LoadRoomsEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LoadRoomsEvent value)? load,
     TResult Function(CreateRoomEvent value)? create,
+    TResult Function(JoinRoomEvent value)? joinRoom,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -252,6 +264,7 @@ class _$CreateRoomEventImpl implements CreateRoomEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() load,
     required TResult Function(String name) create,
+    required TResult Function(String roomId) joinRoom,
   }) {
     return create(name);
   }
@@ -261,6 +274,7 @@ class _$CreateRoomEventImpl implements CreateRoomEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
     TResult? Function(String name)? create,
+    TResult? Function(String roomId)? joinRoom,
   }) {
     return create?.call(name);
   }
@@ -270,6 +284,7 @@ class _$CreateRoomEventImpl implements CreateRoomEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
     TResult Function(String name)? create,
+    TResult Function(String roomId)? joinRoom,
     required TResult orElse(),
   }) {
     if (create != null) {
@@ -283,6 +298,7 @@ class _$CreateRoomEventImpl implements CreateRoomEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(LoadRoomsEvent value) load,
     required TResult Function(CreateRoomEvent value) create,
+    required TResult Function(JoinRoomEvent value) joinRoom,
   }) {
     return create(this);
   }
@@ -292,6 +308,7 @@ class _$CreateRoomEventImpl implements CreateRoomEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(LoadRoomsEvent value)? load,
     TResult? Function(CreateRoomEvent value)? create,
+    TResult? Function(JoinRoomEvent value)? joinRoom,
   }) {
     return create?.call(this);
   }
@@ -301,6 +318,7 @@ class _$CreateRoomEventImpl implements CreateRoomEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LoadRoomsEvent value)? load,
     TResult Function(CreateRoomEvent value)? create,
+    TResult Function(JoinRoomEvent value)? joinRoom,
     required TResult orElse(),
   }) {
     if (create != null) {
@@ -320,6 +338,153 @@ abstract class CreateRoomEvent implements RoomEvent {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CreateRoomEventImplCopyWith<_$CreateRoomEventImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$JoinRoomEventImplCopyWith<$Res> {
+  factory _$$JoinRoomEventImplCopyWith(
+          _$JoinRoomEventImpl value, $Res Function(_$JoinRoomEventImpl) then) =
+      __$$JoinRoomEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String roomId});
+}
+
+/// @nodoc
+class __$$JoinRoomEventImplCopyWithImpl<$Res>
+    extends _$RoomEventCopyWithImpl<$Res, _$JoinRoomEventImpl>
+    implements _$$JoinRoomEventImplCopyWith<$Res> {
+  __$$JoinRoomEventImplCopyWithImpl(
+      _$JoinRoomEventImpl _value, $Res Function(_$JoinRoomEventImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of RoomEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? roomId = null,
+  }) {
+    return _then(_$JoinRoomEventImpl(
+      roomId: null == roomId
+          ? _value.roomId
+          : roomId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$JoinRoomEventImpl implements JoinRoomEvent {
+  const _$JoinRoomEventImpl({required this.roomId});
+
+  @override
+  final String roomId;
+
+  @override
+  String toString() {
+    return 'RoomEvent.joinRoom(roomId: $roomId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$JoinRoomEventImpl &&
+            (identical(other.roomId, roomId) || other.roomId == roomId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, roomId);
+
+  /// Create a copy of RoomEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$JoinRoomEventImplCopyWith<_$JoinRoomEventImpl> get copyWith =>
+      __$$JoinRoomEventImplCopyWithImpl<_$JoinRoomEventImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() load,
+    required TResult Function(String name) create,
+    required TResult Function(String roomId) joinRoom,
+  }) {
+    return joinRoom(roomId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? load,
+    TResult? Function(String name)? create,
+    TResult? Function(String roomId)? joinRoom,
+  }) {
+    return joinRoom?.call(roomId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? load,
+    TResult Function(String name)? create,
+    TResult Function(String roomId)? joinRoom,
+    required TResult orElse(),
+  }) {
+    if (joinRoom != null) {
+      return joinRoom(roomId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoadRoomsEvent value) load,
+    required TResult Function(CreateRoomEvent value) create,
+    required TResult Function(JoinRoomEvent value) joinRoom,
+  }) {
+    return joinRoom(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(LoadRoomsEvent value)? load,
+    TResult? Function(CreateRoomEvent value)? create,
+    TResult? Function(JoinRoomEvent value)? joinRoom,
+  }) {
+    return joinRoom?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoadRoomsEvent value)? load,
+    TResult Function(CreateRoomEvent value)? create,
+    TResult Function(JoinRoomEvent value)? joinRoom,
+    required TResult orElse(),
+  }) {
+    if (joinRoom != null) {
+      return joinRoom(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class JoinRoomEvent implements RoomEvent {
+  const factory JoinRoomEvent({required final String roomId}) =
+      _$JoinRoomEventImpl;
+
+  String get roomId;
+
+  /// Create a copy of RoomEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$JoinRoomEventImplCopyWith<_$JoinRoomEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

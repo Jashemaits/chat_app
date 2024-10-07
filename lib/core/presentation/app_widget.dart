@@ -17,7 +17,7 @@ class AppWidget extends StatelessWidget {
               AuthBloc(FirebaseAuth.instance)..add(const AuthEvent.checkAuth()),
         ),
         BlocProvider<RoomBloc>(
-          create: (context) => RoomBloc(),
+          create: (context) => RoomBloc()..add(const RoomEvent.load()),
         ),
       ],
       child: MaterialApp(

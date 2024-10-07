@@ -8,6 +8,7 @@ class RoomModel with _$RoomModel {
   factory RoomModel({
     required String id,
     required String name,
+    required List<String> members,
     @TimestampConverter() required DateTime createdAt,
   }) = _RoomModel;
 

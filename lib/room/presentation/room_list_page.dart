@@ -1,10 +1,17 @@
 import 'package:chat_app/room/application/room_bloc.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class RoomListPage extends StatelessWidget {
+class RoomListPage extends StatefulWidget {
   const RoomListPage({super.key});
 
+  @override
+  State<RoomListPage> createState() => _RoomListPageState();
+}
+
+class _RoomListPageState extends State<RoomListPage> {
+  final nameController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +28,6 @@ class RoomListPage extends StatelessWidget {
         builder: (context, state) {
           return state.when(
             initial: () {
-              context.read<RoomBloc>().add(const RoomEvent.load());
               return const Center(child: CircularProgressIndicator());
             },
             loading: () => const Center(child: CircularProgressIndicator()),
@@ -31,9 +37,18 @@ class RoomListPage extends StatelessWidget {
                 final room = rooms[index];
                 return ListTile(
                   title: Text(room.name),
-                  subtitle: Text(
-                    'Created: ${room.createdAt.toString()}',
-                  ),
+                  subtitle: Text('Created: ${room.createdAt.toString()}'),
+                  trailing: room.members
+                          .contains(FirebaseAuth.instance.currentUser?.uid)
+                      ? Icon(Icons.check_circle, color: Colors.green)
+                      : TextButton(
+                          onPressed: () {
+                            context.read<RoomBloc>().add(
+                                  RoomEvent.joinRoom(roomId: room.id),
+                                );
+                          },
+                          child: Text('Join'),
+                        ),
                   onTap: () {},
                 );
               },
@@ -46,26 +61,32 @@ class RoomListPage extends StatelessWidget {
   }
 
   void _showCreateRoomDialog(BuildContext context) {
-    final nameController = TextEditingController();
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Create Room'),
-        content: TextField(
-          controller: nameController,
-          decoration: const InputDecoration(labelText: 'Room Name'),
+        title: Text('Create Room'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TextField(
+              controller: nameController,
+              decoration: InputDecoration(labelText: 'Room Name'),
+            ),
+          ],
         ),
         actions: [
           TextButton(
             onPressed: () {
               if (nameController.text.isNotEmpty) {
                 context.read<RoomBloc>().add(
-                      RoomEvent.create(name: nameController.text),
+                      RoomEvent.create(
+                        name: nameController.text,
+                      ),
                     );
                 Navigator.pop(context);
               }
             },
-            child: const Text('Create'),
+            child: Text('Create'),
           ),
         ],
       ),

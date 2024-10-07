@@ -22,6 +22,7 @@ RoomModel _$RoomModelFromJson(Map<String, dynamic> json) {
 mixin _$RoomModel {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  List<String> get members => throw _privateConstructorUsedError;
   @TimestampConverter()
   DateTime get createdAt => throw _privateConstructorUsedError;
 
@@ -40,7 +41,11 @@ abstract class $RoomModelCopyWith<$Res> {
   factory $RoomModelCopyWith(RoomModel value, $Res Function(RoomModel) then) =
       _$RoomModelCopyWithImpl<$Res, RoomModel>;
   @useResult
-  $Res call({String id, String name, @TimestampConverter() DateTime createdAt});
+  $Res call(
+      {String id,
+      String name,
+      List<String> members,
+      @TimestampConverter() DateTime createdAt});
 }
 
 /// @nodoc
@@ -60,6 +65,7 @@ class _$RoomModelCopyWithImpl<$Res, $Val extends RoomModel>
   $Res call({
     Object? id = null,
     Object? name = null,
+    Object? members = null,
     Object? createdAt = null,
   }) {
     return _then(_value.copyWith(
@@ -71,6 +77,10 @@ class _$RoomModelCopyWithImpl<$Res, $Val extends RoomModel>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      members: null == members
+          ? _value.members
+          : members // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -87,7 +97,11 @@ abstract class _$$RoomModelImplCopyWith<$Res>
       __$$RoomModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String name, @TimestampConverter() DateTime createdAt});
+  $Res call(
+      {String id,
+      String name,
+      List<String> members,
+      @TimestampConverter() DateTime createdAt});
 }
 
 /// @nodoc
@@ -105,6 +119,7 @@ class __$$RoomModelImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? name = null,
+    Object? members = null,
     Object? createdAt = null,
   }) {
     return _then(_$RoomModelImpl(
@@ -116,6 +131,10 @@ class __$$RoomModelImplCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      members: null == members
+          ? _value._members
+          : members // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -130,7 +149,9 @@ class _$RoomModelImpl implements _RoomModel {
   _$RoomModelImpl(
       {required this.id,
       required this.name,
-      @TimestampConverter() required this.createdAt});
+      required final List<String> members,
+      @TimestampConverter() required this.createdAt})
+      : _members = members;
 
   factory _$RoomModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$RoomModelImplFromJson(json);
@@ -139,13 +160,21 @@ class _$RoomModelImpl implements _RoomModel {
   final String id;
   @override
   final String name;
+  final List<String> _members;
+  @override
+  List<String> get members {
+    if (_members is EqualUnmodifiableListView) return _members;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_members);
+  }
+
   @override
   @TimestampConverter()
   final DateTime createdAt;
 
   @override
   String toString() {
-    return 'RoomModel(id: $id, name: $name, createdAt: $createdAt)';
+    return 'RoomModel(id: $id, name: $name, members: $members, createdAt: $createdAt)';
   }
 
   @override
@@ -155,13 +184,15 @@ class _$RoomModelImpl implements _RoomModel {
             other is _$RoomModelImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
+            const DeepCollectionEquality().equals(other._members, _members) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, createdAt);
+  int get hashCode => Object.hash(runtimeType, id, name,
+      const DeepCollectionEquality().hash(_members), createdAt);
 
   /// Create a copy of RoomModel
   /// with the given fields replaced by the non-null parameter values.
@@ -183,6 +214,7 @@ abstract class _RoomModel implements RoomModel {
   factory _RoomModel(
           {required final String id,
           required final String name,
+          required final List<String> members,
           @TimestampConverter() required final DateTime createdAt}) =
       _$RoomModelImpl;
 
@@ -193,6 +225,8 @@ abstract class _RoomModel implements RoomModel {
   String get id;
   @override
   String get name;
+  @override
+  List<String> get members;
   @override
   @TimestampConverter()
   DateTime get createdAt;
