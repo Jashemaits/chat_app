@@ -1,3 +1,4 @@
+import 'package:chat_app/chat/presentation/chat_page.dart';
 import 'package:chat_app/room/application/room_bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -49,7 +50,18 @@ class _RoomListPageState extends State<RoomListPage> {
                           },
                           child: Text('Join'),
                         ),
-                  onTap: () {},
+                  onTap: room.members
+                          .contains(FirebaseAuth.instance.currentUser?.uid)
+                      ? () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ChatPage(
+                                roomId: room.id,
+                                roomName: room.name,
+                              ),
+                            ),
+                          )
+                      : null,
                 );
               },
             ),
